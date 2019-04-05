@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Container } from 'react-bootstrap'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+
+import Navigation from './Components/Navigation'
+import Current from './Components/Current'
+import Daily from './Components/Daily'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<Container>
+				<Router>
+					<Navigation />
+					<Current />
+					<Daily />
+
+
+					<Route path="/" exact component = {Current} />
+					<Route path="/current/" component = {Current} />
+					<Route path="/daily/" component = {Daily} />
+				</Router>
+			</Container>
+		)
+	}
 }
 
-export default App;
+export default App
