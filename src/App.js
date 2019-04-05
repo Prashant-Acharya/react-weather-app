@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import { Navbar, Nav } from 'react-bootstrap'
 
 
-import Navigation from './Components/Navigation'
 import Current from './Components/Current'
 import Daily from './Components/Daily'
 
@@ -12,10 +12,15 @@ class App extends Component {
 		return (
 			<Container>
 				<Router>
-					<Navigation />
-					<Current />
-					<Daily />
-
+					<Navbar bg="dark" variant="dark">
+						<Navbar.Brand>
+							{' Weather App '}
+						</Navbar.Brand>
+						<Nav>
+							<Nav.Link><NavLink to='/current/'>Get Current Weather</NavLink></Nav.Link>
+							<Nav.Link><NavLink to='/daily/'>Daily Forecast</NavLink></Nav.Link>
+						</Nav>
+					</Navbar>
 
 					<Route path="/" exact component = {Current} />
 					<Route path="/current/" component = {Current} />
