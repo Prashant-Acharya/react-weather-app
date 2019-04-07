@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
+// import axios from 'axios'
 
 class Daily extends Component {
 	state = {
-		message: 'test'
+		
 	}
 	componentDidMount(){
-		this.setState({message: 'Hey'})
+		
 	}
 
 	render(){
 		return (
 			<>
-				<h3>Daily Weather Forecast: {this.state.message}</h3>
+				<h3>Daily Weather Forecast</h3>
+				<p>{this.props.data.latitude}, {this.props.data.longitude}</p>
 			</>
 		)
 	}

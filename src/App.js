@@ -7,17 +7,22 @@ import { Navbar, Nav } from 'react-bootstrap'
 import Current from './Components/Current'
 import Daily from './Components/Daily'
 
+// Import API Key
+import apikey from './apikey'
+
+
 class App extends Component {
 	state = {
-		latitude: '',
-		longitude: ''
+		lat: '',
+		lon: '',
+		appId: apikey
 	}
 
 	componentDidMount(){
 		navigator.geolocation.getCurrentPosition(position => {
 			this.setState({
-				latitude: parseInt(position.coords.latitude),
-				longitude: parseInt(position.coords.longitude)
+				lat: parseInt(position.coords.latitude),
+				lon: parseInt(position.coords.longitude)
 			})
 		})
 	}
@@ -40,15 +45,15 @@ class App extends Component {
 					<Route exact path="/" render={() => (
 						<Redirect to="/current"/>
 					)}/>
-					<Route path="/current/" component = {Current} />
-					<Route path="/daily/" component = {Daily} />
+					<Route path="/current/" render = {() => <Current data = {this.state} />} />
+					<Route path="/daily/" render = {() => <Daily data = {this.state} />} />
 				</Router>
 
 
-				<p>
+				{/* <p>
 					Latitude: {this.state.latitude} <br />
 					Longitude: {this.state.longitude}
-				</p>
+				</p> */}
 			</Container>
 		)
 	}
