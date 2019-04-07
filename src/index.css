@@ -12,16 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-a {
-  color: #b6b9bc;
-}
-
-a:hover{
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.active{
-  color: #ffffff;
-}

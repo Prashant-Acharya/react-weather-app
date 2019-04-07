@@ -8,8 +8,18 @@ import Current from './Components/Current'
 import Daily from './Components/Daily'
 
 class App extends Component {
+	state = {
+		latitude: '',
+		longitude: ''
+	}
+
 	componentDidMount(){
-		console.log("App Component mounted")
+		navigator.geolocation.getCurrentPosition(position => {
+			this.setState({
+				latitude: parseInt(position.coords.latitude),
+				longitude: parseInt(position.coords.longitude)
+			})
+		})
 	}
 
 	render() {
@@ -22,8 +32,8 @@ class App extends Component {
 							{' Weather App '}
 						</Navbar.Brand>
 						<Nav>
-							<Nav.Link><NavLink to='/current/'>Get Current Weather</NavLink></Nav.Link>
-							<Nav.Link><NavLink to='/daily/'>Daily Forecast</NavLink></Nav.Link>
+							<NavLink className = "nav-link" to='/current/'>Get Current Weather</NavLink>
+							<NavLink className = "nav-link" to='/daily/'>Daily Forecast</NavLink>
 						</Nav>
 					</Navbar>
 
@@ -33,6 +43,12 @@ class App extends Component {
 					<Route path="/current/" component = {Current} />
 					<Route path="/daily/" component = {Daily} />
 				</Router>
+
+
+				<p>
+					Latitude: {this.state.latitude} <br />
+					Longitude: {this.state.longitude}
+				</p>
 			</Container>
 		)
 	}
