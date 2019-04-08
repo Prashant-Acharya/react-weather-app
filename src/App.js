@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, NavLink, Redirect } from 'react-router-dom'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, Col, Row } from 'react-bootstrap'
 
 
 import Current from './Components/Current'
@@ -12,7 +12,9 @@ import apikey from './apikey'
 
 
 const DefaultComponent = () => (
-	<h4>Navigate through the navigation menu to find Current weather and forecast</h4>
+	<Row className="justify-content-md-center mt-5">
+		<Col md="auto"><h4>Navigate through the navigation menu to find Current weather and forecast</h4></Col>
+	</Row>
 )
 
 
@@ -34,7 +36,6 @@ class App extends Component {
 	}
 
 	render() {
-		console.log(this.state)
 		return (
 			<Container>
 				<Router>
@@ -44,7 +45,7 @@ class App extends Component {
 						</Navbar.Brand>
 						<Nav>
 							<NavLink className = "nav-link" to='/current/'>Get Current Weather</NavLink>
-							<NavLink className = "nav-link" to='/daily/'>Daily Forecast</NavLink>
+							<NavLink className = "nav-link" to='/daily/'>Hourly Forecast</NavLink>
 						</Nav>
 					</Navbar>
 
