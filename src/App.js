@@ -11,6 +11,11 @@ import Daily from './Components/Daily'
 import apikey from './apikey'
 
 
+const DefaultComponent = () => (
+	<h4>Navigate through the navigation menu to find Current weather and forecast</h4>
+)
+
+
 class App extends Component {
 	state = {
 		lat: '',
@@ -21,16 +26,17 @@ class App extends Component {
 	componentDidMount(){
 		navigator.geolocation.getCurrentPosition(position => {
 			this.setState({
-				lat: parseInt(position.coords.latitude),
-				lon: parseInt(position.coords.longitude)
+				lat: parseFloat(position.coords.latitude).toFixed(3),
+				lon: parseFloat(position.coords.longitude).toFixed(3),
+				appId: apikey
 			})
 		})
 	}
 
 	render() {
+		console.log(this.state)
 		return (
 			<Container>
-				
 				<Router>
 					<Navbar bg="dark" variant="dark">
 						<Navbar.Brand>
@@ -42,18 +48,16 @@ class App extends Component {
 						</Nav>
 					</Navbar>
 
-					<Route exact path="/" render={() => (
-						<Redirect to="/current"/>
-					)}/>
+					{/* <Route exact path="/" render={() => (
+						<Redirect to={{
+							pathname: "/current",
+							state: { data: this.state }
+						}} />
+					)}/> */}
+					<Route exact path="/" render = {DefaultComponent} />
 					<Route path="/current/" render = {() => <Current data = {this.state} />} />
 					<Route path="/daily/" render = {() => <Daily data = {this.state} />} />
 				</Router>
-
-
-				{/* <p>
-					Latitude: {this.state.latitude} <br />
-					Longitude: {this.state.longitude}
-				</p> */}
 			</Container>
 		)
 	}

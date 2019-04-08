@@ -13,7 +13,6 @@ class Daily extends Component {
 		return (
 			<>
 				<h3>Daily Weather Forecast</h3>
-				<p>{this.props.data.latitude}, {this.props.data.longitude}</p>
 			</>
 		)
 	}
